@@ -43,7 +43,7 @@ export class VariableSubstitution {
                     let jsonObject = this.fileContentCache.get(file);
                     let isJsonSubstitutionApplied = jsonSubsitution.substituteJsonVariable(jsonObject, EnvTreeUtility.getEnvVarTree());
                     if(isJsonSubstitutionApplied) {
-                        fs.writeFileSync(file, (fileEncodeType.withBOM ? '\uFEFF' : '') +jsonObject, { encoding: fileEncodeType.encoding });
+                        fs.writeFileSync(file, (fileEncodeType.withBOM ? '\uFEFF' : '') +JSON.parse(jsonObject), { encoding: fileEncodeType.encoding });
                         console.log(`Successfully updated file: ${file}`);
                     }
                     else {
